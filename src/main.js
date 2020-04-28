@@ -7,8 +7,10 @@ import Framework7Vue from 'framework7-vue/framework7-vue.esm.bundle.js';
 import 'framework7/css/framework7.bundle.css';
 import './css/app.css';
 import './css/icons.css';
+import './registerServiceWorker'
 
 Framework7.use(Framework7Vue);
+
 
 new Vue({
   render: h => h(App),

@@ -1,18 +1,22 @@
 <template>
-    <f7-card class="demo-card-header-pic">
+    <f7-card>
         <f7-card-header
                 class="no-border"
                 valign="bottom"
-                :style="'background-image:url(' + article.img + ')'"
-        >
-            {{article.title}}
+                :style="'background-image:url(' + 'https://newspaper-dev.gp-ggr.ru/api/storage/' + article.image.filename + ')'">
+            <p class="card-title">{{article.title}}</p>
+            <f7-link :href="`/${linkResourse}/${article.id}/`" class="card-href"></f7-link>
         </f7-card-header>
-        <f7-card-content>
+        <f7-card-content v-if="article.description">
             <!--                <p class="date">Posted on January 21, 2015</p>-->
-            <p>{{article.text}}</p>
+            <p><f7-link :href="`/${linkResourse}/${article.id}/`" class="card-text-link">{{article.description}}</f7-link></p>
         </f7-card-content>
-        <f7-card-footer>
-            <f7-link :href="`/article/${article.id}/`">Подробнее</f7-link>
+        <f7-card-footer v-if="article.tags">
+<!--            <f7-link :href="`/article/${article.id}/`">Перейти</f7-link>-->
+            <span>
+                <f7-icon size="22px" f7="tag_circle"></f7-icon>
+                <span v-for="tag in article.tags" :key="tag.id">{{tag.title}} </span>
+            </span>
         </f7-card-footer>
     </f7-card>
 </template>
@@ -21,8 +25,10 @@
     export default {
         name: "ArticleItemComponent",
         props: {
-            article: Object
+            article: Object,
+            linkResourse: String
         }
+
     }
 </script>
 
@@ -32,5 +38,19 @@
         background-size: cover;
         background-position: top;
         color: #fff;
+    }
+    .card-title {
+        background: #1212127a;
+        padding: 3px 2px;
+    }
+    .card-href {
+        width: 100%;
+        height: 100%;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+    }
+    .card-text-link {
+        color: #000;
     }
 </style>

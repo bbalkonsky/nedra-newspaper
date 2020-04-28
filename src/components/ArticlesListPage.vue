@@ -1,13 +1,21 @@
 <template>
-    <f7-page name="article-list" ptr @ptr:refresh="loadMore">
+    <f7-page name="article-list" ptr @ptr:refresh="fetch">
         <f7-navbar back-link="Назад">
             <f7-nav-title>Новости</f7-nav-title>
         </f7-navbar>
 
+        <f7-block v-if="release.length" class="row align-items-stretch text-align-center" >
+            <f7-col>
+                <f7-preloader :size="42"></f7-preloader>
+            </f7-col>
+        </f7-block>
+
         <article-item-component
-                v-for="article in editionArticles"
+                v-else
+                v-for="article in release.articles"
                 :key="article.id"
-                :article="article">
+                :article="article"
+                :link-resourse="'article'">
         </article-item-component>
 
     </f7-page>
@@ -15,74 +23,39 @@
 
 <script>
     import ArticleItemComponent from "@/components/ArticleItemComponent";
+    import repository from "@/api/repository";
+
     export default {
         name: "ArticlesListPage",
         components: {ArticleItemComponent},
         data() {
             return {
                 id: this.$f7route.params.id,
-                articles: [
-                    {
-                        editionId: 1,
-                        id: 1,
-                        title: 'ООО «Газпром недра» и компания «Бейкер Хьюз» договорились о сотрудничестве',
-                        text: 'Для реализации подписанного соглашения будет сформирована совместная Программа сотрудничества',
-                        img: 'https://nedra.gazprom.ru/_ah/img/ltYfdLZxMSjAK6i0B2tW6Q=h500',
-                        date: '01.01.2001',
-                        headings: [
-                            'Новость',
-                            'Статья'
-                        ]
-                    },
-                    {
-                        editionId: 1,
-                        id: 2,
-                        title: 'Участники общественных слушаний одобрили проведение геологоразведочных работ на шельфе Карского моря',
-                        text: '4 февраля в селе Яр-Сале Ямальского района Ямало-Ненецкого автономного округа состоялись общественные слушания по проектной документации, касающейся проведения ООО «Газпром недра» геологоразведочных работ на шельфе Карского моря в 2020 году.',
-                        img: 'https://nedra.gazprom.ru/_ah/img/wiV3lP1Gy-sLD7muswPpig=h500',
-                        date: '01.01.2001',
-                        headings: [
-                            'Новость'
-                        ]
-                    },
-                    {
-                        editionId: 1,
-                        id: 3,
-                        title: 'Филиал «Газпром недра НТЦ» в Тюмени возглавил Евгений Белюскин',
-                        text: 'Он отметил, что у филиала — много планов, связанных как с изучением традиционных районов газодобычи, так и с созданием новых центров в Западной и Восточной Сибири.',
-                        img: 'https://nedra.gazprom.ru/d/story/cb/203/img_9398.jpg',
-                        date: '01.01.2001',
-                        headings: [
-                            'Новость'
-                        ]
-                    },
-                    {
-                        editionId: 2,
-                        id: 4,
-                        title: 'Работник ООО «Газпром недра» удостоен государственной награды за работу по вводу в эксплуатацию Бованенковского НГКМ',
-                        text: 'Награду вручил Председатель Правления ПАО «Газпром» Алексей Миллер',
-                        img: 'https://nedra.gazprom.ru/d/story/ca/202/1.jpg',
-                        date: '01.01.2001',
-                        headings: [
-                            'Статья'
-                        ]
-                    }
-                ]
-            }
-        },
-        computed: {
-            editionArticles: function () {
-                return this.articles.filter(article => article.editionId === parseInt(this.id, 10));
+                articles: [],
+                release: []
             }
         },
         methods: {
-            loadMore(done) {
-                setTimeout(() => {
-                    console.log('PUUUUUUUUUUUL!');
-                    done();
-                }, 1000);
-            },
+            async fetch(done) {
+                try {
+                    const data = await repository.getReleaseById(parseInt(this.id, 10));
+                    this.release = data.data;
+                } catch(err) {
+                    console.log(err)
+                }
+
+                if (done){
+                    done()
+                } else {
+                    this.isDataLoading = false;
+                }
+
+            }
         },
+        created() {
+            this.isDataLoading = true;
+            this.fetch();
+        }
     }
 </script>
 

@@ -4,13 +4,19 @@
       <f7-nav-title>Рубрики</f7-nav-title>
     </f7-navbar>
 
-    <f7-block strong inset>
+    <f7-block v-if="isDataLoading" class="row align-items-stretch text-align-center" >
+      <f7-col>
+        <f7-preloader :size="42"></f7-preloader>
+      </f7-col>
+    </f7-block>
+
+    <f7-block v-else strong inset>
       <f7-list>
         <f7-list-item
-                v-for="(tag, idx) in tags"
-                :key="idx"
-                :title="tag"
-                :link="`/tag/${tag}/`"
+                v-for="tag in tags"
+                :key="tag.id"
+                :title="tag.title"
+                :link="`/tag/${tag.id}/`"
         ></f7-list-item>
       </f7-list>
     </f7-block>
@@ -18,35 +24,32 @@
 </template>
 
 <script>
+import repository from "@/api/repository";
+
 export default {
   name: 'TagListPage',
   props: {
   },
   data() {
     return {
-      tags: [
-        'Новость',
-        'Статья',
-        'Актуально',
-        'Год экологии',
-        'Гость номера',
-        'Конкурс',
-        'Коротко о главном',
-        'Охрана труда',
-        'Поздравления',
-        'Нефть',
-        'Новость',
-        'Статья',
-        'Актуально',
-        'Год экологии',
-        'Гость номера',
-        'Конкурс',
-        'Коротко о главном',
-        'Охрана труда',
-        'Поздравления',
-        'Нефть',
-      ]
+      isDataLoading: false,
+      tags: []
     }
+  },
+  methods: {
+    async fetch() {
+      try {
+        const data = await repository.getTags();
+        this.tags = data.data;
+      } catch(err) {
+        console.log(err)
+      }
+        this.isDataLoading = false;
+    }
+  },
+  created() {
+    this.isDataLoading = true;
+    this.fetch();
   }
 }
 </script>
