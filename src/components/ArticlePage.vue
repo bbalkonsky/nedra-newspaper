@@ -13,9 +13,7 @@
         <template v-else>
             <f7-block strong>
                 <p><f7-icon size="22px" f7="calendar_today"></f7-icon> {{article.date}}</p>
-                <p>
-                    <f7-icon size="22px" f7="tag_circle"></f7-icon>
-                    <span v-for="tag in article.tags" :key="tag.id">{{tag.title}} </span></p>
+                <p><span v-for="tag in article.tags" :key="tag.id"><f7-icon size="18px" f7="tag_fill"></f7-icon> {{tag.title}} </span></p>
             </f7-block>
 
             <f7-block class="article-page" strong>
@@ -119,7 +117,7 @@
             this.isDisliked = JSON.parse(localStorage.getItem(`isDisliked${this.id}`));
         },
         mounted() {
-            console.log(this.$f7router)
+
         }
     }
 </script>

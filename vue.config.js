@@ -5,7 +5,7 @@ module.exports = {
         msTileColor: '#006198',
         manifestOptions: {
             name: 'Корпоративная газета «Время открытий»',
-            short_name: 'Время Открытий',
+            short_name: 'Газета',
             background_color: '#007bc1',
             display: 'standalone'
         },

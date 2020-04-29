@@ -130,7 +130,7 @@
                         this.$f7.popover.create({
                             targetEl: '#popup-anchor',
                             content: '<div class="popover popover-sw">' +
-                                '<p>Что бы установить приложение на телефон <br/> нажмите ' +
+                                '<p>Чтобы установить приложение на телефон <br/> нажмите ' +
                                 '<img src="./img/share.png"/>\n' +
                                 ', а затем <img src="./img/add.png"/></p>\n' +
                                 '</div>'

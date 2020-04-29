@@ -14,8 +14,7 @@
         <f7-card-footer v-if="article.tags">
 <!--            <f7-link :href="`/article/${article.id}/`">Перейти</f7-link>-->
             <span>
-                <f7-icon size="22px" f7="tag_circle"></f7-icon>
-                <span v-for="tag in article.tags" :key="tag.id">{{tag.title}} </span>
+                <span v-for="tag in article.tags" :key="tag.id"><f7-icon size="18px" f7="tag_fill"></f7-icon> {{tag.title}} </span>
             </span>
         </f7-card-footer>
     </f7-card>
