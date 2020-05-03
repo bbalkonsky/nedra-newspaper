@@ -82,40 +82,54 @@
                 this.isDataLoading = true;
                 try {
                     const data = await repository.getArticleById(parseInt(this.id, 10));
+                    this.likes = data.data.like;
+                    this.dislikes = data.data.dislike;
                     this.article = data.data;
                 } catch(err) {
                     console.log(err)
                 }
                 this.isDataLoading = false;
             },
-            likeHandler(value) {
-                this.isLiked = value;
-                localStorage[`isLiked${this.id}`] = value;
-                if (value) {
-                    this.likes++;
-                } else {
-                    this.likes--;
+            async likeHandler(value) {
+                try {
+                    await repository.postLike(this.id, value);
+                    this.isLiked = value;
+                    localStorage[`isLiked${this.id}`] = value;
+                    if (value) {
+                        this.likes++;
+                    } else {
+                        this.likes--;
+                    }
+                    if (value && this.isDisliked) {
+                        await repository.postDislike(this.id, false);
+                        localStorage[`isDisliked${this.id}`] = false;
+                        this.isDisliked = false;
+                        this.dislikes--;
+                    }
+                } catch(err) {
+                    console.log(err);
                 }
-                if (value && this.isDisliked) {
-                    localStorage[`isDisliked${this.id}`] = false;
-                    this.isDisliked = false;
-                    this.dislikes--;
-                }
-                repository.postLike(this.id, true);
             },
-            dislikeHandler(value) {
-                this.isDisliked = value;
-                localStorage[`isDisliked${this.id}`] = value;
-                if (value) {
-                    this.dislikes++;
-                } else {
-                    this.dislikes--;
+            async dislikeHandler(value) {
+                try {
+                    await repository.postDislike(this.id, value);
+                    this.isDisliked = value;
+                    localStorage[`isDisliked${this.id}`] = value;
+                    if (value) {
+                        this.dislikes++;
+                    } else {
+                        this.dislikes--;
+                    }
+                    if (value && this.isLiked) {
+                        await repository.postLike(this.id, false);
+                        localStorage[`isLiked${this.id}`] = false;
+                        this.isLiked = false;
+                        this.likes--;
+                    }
+                } catch(err) {
+                    console.log(err);
                 }
-                if (value && this.isLiked) {
-                    localStorage[`isLiked${this.id}`] = false;
-                    this.isLiked = false;
-                    this.likes--;
-                }
+
             }
         },
         created() {
