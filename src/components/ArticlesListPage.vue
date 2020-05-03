@@ -1,10 +1,10 @@
 <template>
     <f7-page name="article-list" ptr @ptr:refresh="fetch">
         <f7-navbar back-link="Назад">
-            <f7-nav-title>Новости</f7-nav-title>
+            <f7-nav-title>{{release.title ? release.title : 'Новости'}}</f7-nav-title>
         </f7-navbar>
 
-        <f7-block v-if="release.length" class="row align-items-stretch text-align-center" >
+        <f7-block v-if="!Object.keys(release).length" class="row align-items-stretch text-align-center" >
             <f7-col>
                 <f7-preloader :size="42"></f7-preloader>
             </f7-col>
@@ -31,8 +31,7 @@
         data() {
             return {
                 id: this.$f7route.params.id,
-                articles: [],
-                release: []
+                release: {}
             }
         },
         methods: {

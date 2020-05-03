@@ -25,5 +25,12 @@ export default {
     },
     getArticlesByTag(tag) {
         return axios.get(`${baseUrl}/tag/${tag}/article`);
+    },
+
+    postLike(articleId, value) {
+        return axios.post(`${baseUrl}/article/${articleId}/like/${value ? '+1' : '-1'}`);
+    },
+    postDislike(articleId, value) {
+        return axios.post(`${baseUrl}/article/${articleId}/unlike/${value ? '+1' : '-1'}`);
     }
 }

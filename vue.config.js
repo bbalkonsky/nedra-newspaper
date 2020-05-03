@@ -4,7 +4,7 @@ module.exports = {
         themeColor: '#007bc1',
         msTileColor: '#006198',
         manifestOptions: {
-            name: 'Корпоративная газета «Время открытий»',
+            name: 'Корпоративная газета \n«Время открытий»',
             short_name: 'Газета',
             background_color: '#007bc1',
             display: 'standalone'
@@ -14,9 +14,9 @@ module.exports = {
             skipWaiting: true,
             runtimeCaching: [{
                 urlPattern: new RegExp('^https://newspaper-dev.gp-ggr.ru/api/'),
-                handler: 'networkFirst',
+                handler: 'staleWhileRevalidate',
                 options: {
-                    networkTimeoutSeconds: 10,
+                    // networkTimeoutSeconds: 10,
                     cacheName: 'api-cache',
                     cacheableResponse: {
                         statuses: [0, 200],

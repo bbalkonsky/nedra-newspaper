@@ -16,8 +16,9 @@
                 v-for="tag in tags"
                 :key="tag.id"
                 :title="tag.title"
-                :link="`/tag/${tag.id}/`"
+                @click="navigateToMain(tag.id)"
         ></f7-list-item>
+        <!--                :link="`/tag/${tag.id}/`"-->
       </f7-list>
     </f7-block>
   </f7-page>
@@ -45,6 +46,11 @@ export default {
         console.log(err)
       }
         this.isDataLoading = false;
+    },
+    navigateToMain(tagId) {
+      this.$f7.tab.show('#view-home');
+      this.$f7.view.main.router.navigate('/', {reloadAll: true})
+      this.$f7.view.main.router.navigate(`/tag/${tagId}/`);
     }
   },
   created() {

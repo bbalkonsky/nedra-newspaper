@@ -12,9 +12,8 @@
             <p><f7-link :href="`/${linkResourse}/${article.id}/`" class="card-text-link">{{article.description}}</f7-link></p>
         </f7-card-content>
         <f7-card-footer v-if="article.tags">
-<!--            <f7-link :href="`/article/${article.id}/`">Перейти</f7-link>-->
             <span>
-                <span v-for="tag in article.tags" :key="tag.id"><f7-icon size="18px" f7="tag_fill"></f7-icon> {{tag.title}} </span>
+                <span class="card-tag" v-for="tag in article.tags" :key="tag.id"><f7-icon size="18px" f7="tag_fill"></f7-icon> <f7-link :href="`/tag/${tag.id}/`">{{tag.title}}</f7-link> </span>
             </span>
         </f7-card-footer>
     </f7-card>
@@ -41,6 +40,9 @@
     .card-title {
         background: #1212127a;
         padding: 3px 2px;
+    }
+    .card-tag a{
+        color: inherit;
     }
     .card-href {
         width: 100%;

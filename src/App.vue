@@ -1,8 +1,21 @@
 <template>
     <f7-app :params="f7params" :theme-dark="false">
         <f7-views tabs class="safe-areas">
+<!--        <f7-views main class="safe-areas">-->
 
-            <!-- Tabbar for switching views-tabs -->
+<!--            <f7-toolbar tabbar bottom>-->
+<!--                <f7-link tab-link="#tab-1" icon-ios="f7:briefcase_fill" icon-aurora="f7:briefcase_fill" icon-md="material:work" tab-link-active></f7-link>-->
+<!--                <f7-link tab-link="#tab-2" icon-ios="f7:person_circle_fill" icon-aurora="f7:person_circle_fill" icon-md="material:person"></f7-link>-->
+<!--            </f7-toolbar>-->
+<!--            <f7-tabs>-->
+<!--                <f7-tab id="tab-1" class="page-content" tab-active>-->
+<!--                    <departments-tab></departments-tab>-->
+<!--                </f7-tab>-->
+<!--                <f7-tab id="tab-2" class="page-content">-->
+<!--                    <people-tab></people-tab>-->
+<!--                </f7-tab>-->
+<!--            </f7-tabs>-->
+
             <f7-toolbar tabbar labels bottom animated>
                 <f7-link tab-link-active tab-link="#view-home" icon-ios="f7:today" icon-aurora="f7:today"
                          icon-md="material:today_fill" text="Выпуски"></f7-link>
@@ -107,18 +120,22 @@
             document.getElementById('framework7-root').addEventListener("swWasUpdated", () => {
                 this.$f7.dialog.create({
                     title: 'Внимание!',
-                    text: 'Приложение было обновлено, необходимо выполнить перезагрузку!',
+                    text: 'Приложение было обновлено. \nЧтобы изменения вступили в силу необходимо выполнить перезагрузку!',
                     cssClass: 'service-worker-dialog',
                     buttons: [
                         {
                             text: 'OK'
+                        },
+                        {
+                            text: 'Перезагрузить',
+                            onClick: this.onReloadPageClicked
                         }
                     ]
                 }).open()
             });
 
             document.getElementById('framework7-root').addEventListener("swWasErrored", () => {
-                this.$f7.dialog.create({
+                this.$f7.dialog.create({ //TODO переделать на toast
                     title: 'Не удалось установить приложение. Попробуйте обновить страницу',
                     buttons: [{text: 'OK'}]
                 }).open()
@@ -151,6 +168,9 @@
                     position: 'center',
                     closeTimeout: 2000,
                 }).open();
+            },
+            onReloadPageClicked() {
+                document.location.reload();
             }
         },
     }

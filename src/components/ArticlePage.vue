@@ -13,7 +13,11 @@
         <template v-else>
             <f7-block strong>
                 <p><f7-icon size="22px" f7="calendar_today"></f7-icon> {{article.date}}</p>
-                <p><span v-for="tag in article.tags" :key="tag.id"><f7-icon size="18px" f7="tag_fill"></f7-icon> {{tag.title}} </span></p>
+                <p>
+                    <span class="article-tag" v-for="tag in article.tags" :key="tag.id">
+                        <f7-icon size="18px" f7="tag_fill"></f7-icon> <f7-link :href="`/tag/${tag.id}/`">{{tag.title}}</f7-link>
+                    </span>
+                </p>
             </f7-block>
 
             <f7-block class="article-page" strong>
@@ -25,6 +29,8 @@
                         <p>{{item.text}}</p>
                     </f7-block>
                     <p v-else-if="item.type === 'paragraph'" :key="idx">{{item.text}}</p>
+                    <p v-else-if="item.type === 'paragraph-strong'" :key="idx"><b>{{item.text}}</b></p>
+                    <p v-else-if="item.type === 'paragraph-italic'" :key="idx"><i>{{item.text}}</i></p>
                     <div class="article-image" v-else-if="item.type === 'image'" :key="idx">
                         <img :src="'https://newspaper-dev.gp-ggr.ru/api/storage/' + item.image.filename" :alt="item.image.alt">
                         <p class="text-align-center">{{item.image.alt}}</p>
@@ -95,6 +101,7 @@
                     this.isDisliked = false;
                     this.dislikes--;
                 }
+                repository.postLike(this.id, true);
             },
             dislikeHandler(value) {
                 this.isDisliked = value;
@@ -130,6 +137,9 @@
         height: 3px;
     }
 
+    .article-tag a{
+        color: inherit;
+    }
     .article-page > p, .article-page > .article-highlight {
         margin: 0 0 14px 0;
     }
