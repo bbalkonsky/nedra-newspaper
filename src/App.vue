@@ -24,13 +24,7 @@
 </template>
 
 <script>
-    import HomePage from './components/HomePage.vue'
-    import TagListPage from './components/TagListPage.vue'
-    import ArticlesListPage from "@/components/ArticlesListPage";
-    import TagArticlesListPage from "@/components/TagArticlesListPage";
-    import ArticlePage from "@/components/ArticlePage";
-    import AboutPage from "@/components/AboutPage";
-    import SettingsPage from "@/components/SettingsPage";
+    import routes from "@/js/routes";
 
     export default {
         name: 'App',
@@ -39,36 +33,7 @@
                 f7params: {
                     name: 'Время открытий',
                     id: 'com.myapp.test',
-                    routes: [
-                        {
-                            path: '/',
-                            component: HomePage,
-                        },
-                        {
-                            path: '/taglist/',
-                            component: TagListPage,
-                        },
-                        {
-                            path: '/articles/:id/',
-                            component: ArticlesListPage
-                        },
-                        {
-                            path: '/tag/:id/',
-                            component: TagArticlesListPage
-                        },
-                        {
-                            path: '/article/:id/',
-                            component: ArticlePage
-                        },
-                        {
-                            path: '/about/',
-                            component: AboutPage
-                        },
-                        {
-                            path: '/settings/',
-                            component: SettingsPage
-                        }
-                    ],
+                    routes: routes,
                 },
                 isCloseButtonPressed: false
             }
