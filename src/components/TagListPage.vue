@@ -16,9 +16,9 @@
                 v-for="tag in tags"
                 :key="tag.id"
                 :title="tag.title"
-                @click="navigateToMain(tag.id)"
+                :link="`/tag/${tag.id}/`"
         ></f7-list-item>
-        <!--                :link="`/tag/${tag.id}/`"-->
+        <!--                @click="navigateToMain(tag.id)"-->
       </f7-list>
     </f7-block>
   </f7-page>
