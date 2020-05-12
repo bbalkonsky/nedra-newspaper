@@ -25,6 +25,7 @@
 
 <script>
     import routes from "@/js/routes";
+    import {f7App, f7Views, f7View, f7Toolbar, f7Link} from 'framework7-vue';
 
     export default {
         name: 'App',
@@ -37,6 +38,9 @@
                 },
                 isCloseButtonPressed: false
             }
+        },
+        components: {
+            f7App, f7Views, f7View, f7Toolbar, f7Link
         },
         computed: {
 

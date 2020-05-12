@@ -14,8 +14,13 @@
 </template>
 
 <script>
+    import {f7Page, f7Navbar, f7NavTitle, f7List, f7ListItem, f7Toggle} from 'framework7-vue';
+
     export default {
         name: "SettingsPage",
+        components: {
+            f7Page, f7Navbar, f7NavTitle, f7List, f7ListItem, f7Toggle
+        },
         data() {
             return {
                 isDarkTheme: false

@@ -17,8 +17,13 @@
 </template>
 
 <script>
+    import {f7Page, f7Block, f7Navbar, f7NavTitle} from 'framework7-vue';
+
     export default {
-        name: "AboutPage"
+        name: "AboutPage",
+        components: {
+            f7Page, f7Block, f7Navbar, f7NavTitle
+        }
     }
 </script>
 

@@ -26,10 +26,12 @@
 
 <script>
 import repository from "@/api/repository";
+import {f7Page, f7Navbar, f7NavTitle, f7Block, f7Col, f7Preloader, f7List, f7ListItem} from 'framework7-vue';
 
 export default {
   name: 'TagListPage',
-  props: {
+  components: {
+    f7Page, f7Navbar, f7NavTitle, f7Block, f7Col, f7Preloader, f7List, f7ListItem
   },
   data() {
     return {

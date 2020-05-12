@@ -20,11 +20,16 @@
 </template>
 
 <script>
+    import {f7Card, f7CardHeader, f7CardContent, f7CardFooter, f7Link, f7Icon} from 'framework7-vue';
+
     export default {
         name: "ArticleItemComponent",
         props: {
             article: Object,
             linkResourse: String
+        },
+        components: {
+            f7Card, f7CardHeader, f7CardContent, f7CardFooter, f7Link, f7Icon
         }
 
     }

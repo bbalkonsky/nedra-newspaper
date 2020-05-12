@@ -39,8 +39,9 @@
 </template>
 
 <script>
-    import repository from "@/api/repository";
     import ArticleItemComponent from "@/components/ArticleItemComponent";
+    import repository from "@/api/repository";
+    import {f7Page, f7Navbar, f7Block, f7Col, f7Preloader} from 'framework7-vue';
 
     export default {
         name: "HomePage",
@@ -51,6 +52,7 @@
             }
         },
         components: {
+            f7Page, f7Navbar, f7Block, f7Col, f7Preloader,
             ArticleItemComponent
         },
         methods: {

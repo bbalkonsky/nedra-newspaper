@@ -24,10 +24,14 @@
 <script>
     import ArticleItemComponent from "@/components/ArticleItemComponent";
     import repository from "@/api/repository";
+    import {f7Page, f7Navbar, f7NavTitle, f7Block, f7Col, f7Preloader} from 'framework7-vue';
 
     export default {
         name: "ArticlesListPage",
-        components: {ArticleItemComponent},
+        components: {
+            f7Page, f7Navbar, f7NavTitle, f7Block, f7Col, f7Preloader,
+            ArticleItemComponent
+        },
         data() {
             return {
                 id: this.$f7route.params.id,

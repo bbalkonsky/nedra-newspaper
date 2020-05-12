@@ -64,6 +64,7 @@
 
 <script>
     import repository from "@/api/repository";
+    import {f7Page, f7Navbar, f7NavTitle, f7Block, f7Col, f7Row, f7Preloader, f7Icon, f7Button, f7Link} from 'framework7-vue';
 
     export default {
         name: "ArticlePage",
@@ -76,6 +77,9 @@
                 likes: 0,
                 dislikes: 0
             }
+        },
+        components: {
+            f7Page, f7Navbar, f7NavTitle, f7Block, f7Col, f7Row, f7Preloader, f7Icon, f7Button, f7Link
         },
         methods: {
             async fetch() {
