@@ -11,6 +11,7 @@ import Popup from "framework7/components/popup/popup.js";
 import Popover from "framework7/components/popover/popover.js";
 import Preloader from "framework7/components/preloader/preloader.js";
 import Dialog from "framework7/components/dialog/dialog";
+import PullToRefresh from "framework7/components/pull-to-refresh/pull-to-refresh";
 
 
 import 'framework7/css/framework7.bundle.css';
@@ -19,7 +20,7 @@ import './css/icons.css';
 
 import './registerServiceWorker'
 
-Framework7.use([Framework7Vue, Tabs, Toggle, Popup, Popover, Preloader, Dialog]);
+Framework7.use([Framework7Vue, Tabs, Toggle, Popup, Popover, Preloader, Dialog, PullToRefresh]);
 
 
 new Vue({
