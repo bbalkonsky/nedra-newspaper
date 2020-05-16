@@ -87,8 +87,8 @@
                 this.isDataLoading = true;
                 try {
                     const data = await repository.getArticleById(parseInt(this.id, 10));
-                    this.likes = data.data.like;
-                    this.dislikes = data.data.dislike;
+                    this.likes = data.data.like ? data.data.like : 0;
+                    this.dislikes = data.data.dislike ? data.data.dislike : 0;
                     this.article = data.data;
                 } catch(err) {
                     console.log(err)
