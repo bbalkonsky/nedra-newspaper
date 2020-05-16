@@ -4,7 +4,7 @@
             <f7-nav-title>{{article.title ? article.title : 'Новость'}}</f7-nav-title>
         </f7-navbar>
 
-        <f7-block v-if="!Object.keys(article).length" class="row align-items-stretch text-align-center" >
+        <f7-block v-if="isDataLoading" class="row align-items-stretch text-align-center" >
             <f7-col>
                 <f7-preloader :size="42"></f7-preloader>
             </f7-col>
@@ -13,7 +13,7 @@
         <template v-else>
             <f7-block strong>
                 <p><f7-icon size="22px" f7="calendar_today"></f7-icon> {{article.date}}</p>
-                <p>
+                <p v-if="article.tags && article.tags.length">
                     <span class="article-tag" v-for="tag in article.tags" :key="tag.id">
                         <f7-icon size="18px" f7="tag_fill"></f7-icon> <f7-link :href="`/tag/${tag.id}/`">{{tag.title}}</f7-link>
                     </span>
@@ -37,7 +37,7 @@
                     </div>
                 </template>
 
-                <p><b>{{article.author.name}}</b></p>
+                <p v-if="article.writer"><b>{{article.writer}}</b></p>
             </f7-block>
 
             <f7-block strong>
@@ -71,6 +71,7 @@
         data() {
             return {
                 id: this.$f7route.params.id,
+                isDataLoading: false,
                 article: {},
                 isLiked: false,
                 isDisliked: false,
@@ -94,6 +95,7 @@
                 }
                 this.isDataLoading = false;
             },
+
             async likeHandler(value) {
                 try {
                     await repository.postLike(this.id, value);
@@ -137,6 +139,7 @@
             }
         },
         created() {
+            // console.log(this.$f7router)
             this.fetch();
             this.isLiked = JSON.parse(localStorage.getItem(`isLiked${this.id}`));
             this.isDisliked = JSON.parse(localStorage.getItem(`isDisliked${this.id}`));

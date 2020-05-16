@@ -15,7 +15,7 @@
                 v-for="article in tagArticles.articles"
                 :key="article.id"
                 :article="article"
-                :link-resourse="'article'">
+                :link-resourse="'articleFromTag'">
         </article-item-component>
 
     </f7-page>

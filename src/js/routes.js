@@ -28,6 +28,10 @@ const routes = [
         component: ArticlePage
     },
     {
+        path: '/articleFromTag/:id/',
+        component: ArticlePage
+    },
+    {
         path: '/about/',
         component: AboutPage
     },

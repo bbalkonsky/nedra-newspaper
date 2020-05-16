@@ -1,6 +1,7 @@
 <template>
     <f7-card>
         <f7-card-header
+                v-if="article.image"
                 class="no-border"
                 valign="bottom"
                 :style="'background-image:url(' + 'https://newspaper-dev.gp-ggr.ru/api/storage/' + article.image.filename + ')'">
@@ -11,9 +12,10 @@
             <!--                <p class="date">Posted on January 21, 2015</p>-->
             <p><f7-link :href="`/${linkResourse}/${article.id}/`" class="card-text-link">{{article.description}}</f7-link></p>
         </f7-card-content>
-        <f7-card-footer v-if="article.tags">
+        <f7-card-footer v-if="article.tags && article.tags.length">
             <span>
-                <span class="card-tag" v-for="tag in article.tags" :key="tag.id"><f7-icon size="18px" f7="tag_fill"></f7-icon> <f7-link :href="`/tag/${tag.id}/`">{{tag.title}}</f7-link> </span>
+                <span class="card-tag" v-for="tag in article.tags" :key="tag.id">
+                    <f7-icon size="18px" f7="tag_fill"></f7-icon> <f7-link :href="`/tag/${tag.id}/`">{{tag.title}}</f7-link> </span>
             </span>
         </f7-card-footer>
     </f7-card>
@@ -30,7 +32,7 @@
         },
         components: {
             f7Card, f7CardHeader, f7CardContent, f7CardFooter, f7Link, f7Icon
-        }
+        },
 
     }
 </script>
