@@ -8,7 +8,7 @@
             <p class="card-title">{{article.title}}</p>
             <f7-link :href="`/${linkResourse}/${article.id}/`" class="card-href"></f7-link>
         </f7-card-header>
-        <f7-card-content v-if="article.description">
+        <f7-card-content v-if="isContentAvailable && article.description">
             <!--                <p class="date">Posted on January 21, 2015</p>-->
             <p><f7-link :href="`/${linkResourse}/${article.id}/`" class="card-text-link">{{article.description}}</f7-link></p>
         </f7-card-content>
@@ -28,7 +28,11 @@
         name: "ArticleItemComponent",
         props: {
             article: Object,
-            linkResourse: String
+            linkResourse: String,
+            isContentAvailable: {
+                type: Boolean,
+                default: true
+            }
         },
         components: {
             f7Card, f7CardHeader, f7CardContent, f7CardFooter, f7Link, f7Icon

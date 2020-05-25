@@ -14,7 +14,8 @@ module.exports = {
             skipWaiting: true,
             runtimeCaching: [{
                 urlPattern: new RegExp('^https://newspaper-dev.gp-ggr.ru/api/'),
-                handler: 'staleWhileRevalidate',
+                // handler: 'staleWhileRevalidate',
+                handler: 'networkFirst',
                 options: {
                     // networkTimeoutSeconds: 10,
                     cacheName: 'api-cache',

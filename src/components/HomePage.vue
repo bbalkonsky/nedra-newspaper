@@ -32,7 +32,8 @@
                 v-else
                 v-for="edition in editions" :key="edition.id"
                 :article="edition"
-        :link-resourse="'articles'">
+                :link-resourse="'articles'"
+                :isContentAvailable="false">
         </article-item-component>
 
     </f7-page>
