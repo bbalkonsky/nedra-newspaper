@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const baseDomain = 'https://newspaper-dev.gp-ggr.ru';
+const baseDomain = 'https://gazeta.gp-ggr.ru';
 const baseUrl = `${baseDomain}/api`;
 
 export default {
