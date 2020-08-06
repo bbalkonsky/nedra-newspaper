@@ -4,7 +4,7 @@
                 v-if="article.image"
                 class="no-border"
                 valign="bottom"
-                :style="'background-image:url(' + 'https://newspaper-dev.gp-ggr.ru/api/storage/' + article.image.filename + ')'">
+                :style="'background-image:url(' + 'https://gazeta.gp-ggr.ru/api/storage/' + article.image.filename + ')'">
             <p class="card-title">{{article.title}}</p>
             <f7-link :href="`/${linkResourse}/${article.id}/`" class="card-href"></f7-link>
         </f7-card-header>

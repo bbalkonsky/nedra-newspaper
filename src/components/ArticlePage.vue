@@ -32,7 +32,7 @@
                     <p v-else-if="item.type === 'paragraph-strong'" :key="idx"><b>{{item.text}}</b></p>
                     <p v-else-if="item.type === 'paragraph-italic'" :key="idx"><i>{{item.text}}</i></p>
                     <div class="article-image" v-else-if="item.type === 'image'" :key="idx">
-                        <img :src="'https://newspaper-dev.gp-ggr.ru/api/storage/' + item.image.filename" :alt="item.image.alt">
+                        <img :src="'https://gazeta.gp-ggr.ru/api/storage/' + item.image.filename" :alt="item.image.alt">
                         <p class="text-align-center">{{item.image.alt}}</p>
                     </div>
                 </template>
