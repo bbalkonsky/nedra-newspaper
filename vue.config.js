@@ -13,7 +13,7 @@ module.exports = {
         workboxOptions: {
             skipWaiting: true,
             runtimeCaching: [{
-                urlPattern: new RegExp('^https://newspaper-dev.gp-ggr.ru/api/'),
+                urlPattern: new RegExp('^https://gazeta.gp-ggr.ru/api/'),
                 // handler: 'staleWhileRevalidate',
                 handler: 'networkFirst',
                 options: {
