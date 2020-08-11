@@ -1,6 +1,7 @@
 <template>
     <f7-app :params="f7params" :theme-dark="false">
-        <f7-views tabs class="safe-areas">
+
+        <f7-views tabs class="safe-areas" v-bind:class="{ 'is-desktop': isDeviceDesktop }">
 
             <f7-toolbar tabbar labels bottom animated>
                 <f7-link tab-link-active tab-link="#view-home" icon-ios="f7:today" icon-aurora="f7:today"
@@ -14,7 +15,7 @@
 
             <f7-view id="view-home" main tab tab-active url="/"></f7-view>
             <f7-view id="view-taglist" name="taglist" tab url="/taglist/"></f7-view>
-            <f7-view id="view-about" name="taglist" tab url="/about/"></f7-view>
+            <f7-view id="view-about" name="about" tab url="/about/"></f7-view>
 <!--            <f7-view id="view-settings" name="taglist" tab url="/settings/"></f7-view>-->
 
         </f7-views>
@@ -36,7 +37,8 @@
                     id: 'com.myapp.test',
                     routes: routes,
                 },
-                isCloseButtonPressed: false
+                isCloseButtonPressed: false,
+                isDeviceDesktop: false
             }
         },
         components: {
@@ -47,8 +49,10 @@
         },
         created() {
             // console.log(navigator)
+
         },
         mounted() {
+            this.isDeviceDesktop = this.$f7.device.desktop || this.$f7.device.ipad;
             // // const self = this;
             window.addEventListener('load', function () {
                 window.history.pushState({}, '')
@@ -129,15 +133,6 @@
 </script>
 
 <style>
-    #app {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
-
     #popup-anchor {
         width: 1px;
         height: 1px;
@@ -155,5 +150,15 @@
         width: 20px;
         height: 20px;
         vertical-align: middle;
+    }
+
+    .is-desktop {
+      max-width: 400px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .is-desktop .card-header {
+      height: 40vw;
     }
 </style>
