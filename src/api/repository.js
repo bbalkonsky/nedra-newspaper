@@ -13,9 +13,6 @@ export default {
         return axios.get(`${baseUrl}/release/${articleId}`);
     },
 
-    getArticles() {
-        return axios.get(`${baseUrl}/article`);
-    },
     getArticleById(articleId) {
         return axios.get(`${baseUrl}/article/${articleId}`);
     },

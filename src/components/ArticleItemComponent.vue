@@ -4,7 +4,7 @@
                 v-if="article.image"
                 class="no-border"
                 valign="bottom"
-                :style="'background-image:url(' + 'https://gazeta.gp-ggr.ru/api/storage/' + article.image.filename + ')'">
+                :style="'background-image:url(' + `${baseurl}/api/storage/` + article.image.filename + ')'">
             <p class="card-title">{{article.title}}</p>
             <f7-link :href="`/${linkResourse}/${article.id}/`" class="card-href"></f7-link>
         </f7-card-header>
@@ -26,6 +26,11 @@
 
     export default {
         name: "ArticleItemComponent",
+        data() {
+          return {
+            baseurl: process.env.VUE_APP_BASEURL
+          }
+        },
         props: {
             article: Object,
             linkResourse: String,
@@ -37,7 +42,6 @@
         components: {
             f7Card, f7CardHeader, f7CardContent, f7CardFooter, f7Link, f7Icon
         },
-
     }
 </script>
 

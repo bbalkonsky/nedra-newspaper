@@ -66,22 +66,29 @@
             //     }
             //     done();
             // },
-            async fetch(done) {
-                // this.isDataLoading = true;
-                try {
-                    const data = await repository.getRelease();
-                    this.editions = data.data;
-                } catch(err) {
-                    console.log(err)
-                }
-
-                if (done){
-                    done()
-                } else {
-                    this.isDataLoading = false;
-                }
-
+          async fetch(done) {
+            // this.isDataLoading = true;
+            try {
+              const data = await repository.getRelease();
+              this.editions = data.data.sort(this.dateSorter);
+            } catch(err) {
+              console.log(err)
             }
+
+            if (done){
+              done()
+            } else {
+              this.isDataLoading = false;
+            }
+
+          },
+          dateSorter(a, b) {
+            const arrA = a.date.split('.');
+            const arrB = b.date.split('.');
+            const dateA = new Date(arrA[2], arrA[1] - 1, arrA[0]);
+            const dateB = new Date(arrB[2], arrB[1] - 1, arrB[0]);
+            return dateA < dateB ? 1 : dateA > dateB ? -1 : 0;
+          }
         },
         created() {
             this.isDataLoading = true;

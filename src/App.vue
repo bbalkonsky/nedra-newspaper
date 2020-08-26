@@ -159,6 +159,6 @@
     }
 
     .is-desktop .card-header {
-      height: 40vw;
+      height: 300px;
     }
 </style>

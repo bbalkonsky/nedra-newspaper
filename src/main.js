@@ -18,6 +18,13 @@ import 'framework7/css/framework7.bundle.css';
 import './css/app.css';
 import './css/icons.css';
 
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faYoutube } from '@fortawesome/free-brands-svg-icons'
+library.add(faYoutube)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 import './registerServiceWorker'
 
 Framework7.use([Framework7Vue, Tabs, Toggle, Popup, Popover, Preloader, Dialog, PullToRefresh]);

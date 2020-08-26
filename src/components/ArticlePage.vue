@@ -32,8 +32,8 @@
                     <p v-else-if="item.type === 'paragraph-strong'" :key="idx"><b>{{item.text}}</b></p>
                     <p v-else-if="item.type === 'paragraph-italic'" :key="idx"><i>{{item.text}}</i></p>
                     <div class="article-image" v-else-if="item.type === 'image'" :key="idx">
-                        <img :src="'https://gazeta.gp-ggr.ru/api/storage/' + item.image.filename" :alt="item.image.alt">
-                        <p class="text-align-center">{{item.image.alt}}</p>
+                      <img :src="`${baseurl}/api/storage/` + item.image.filename" :alt="item.image.alt">
+                      <p class="text-align-center">{{item.image.alt}}</p>
                     </div>
                 </template>
 
@@ -58,6 +58,22 @@
                     </f7-col>
                 </f7-row>
             </f7-block>
+
+          <f7-block strong>
+            <f7-row>
+              <f7-col class="social-col">
+                <f7-link class="social-link-instagram" external icon-f7="logo_instagram" href="https://instagram.com/gazprom.nedra"/>
+              </f7-col>
+              <f7-col class="social-col">
+                <f7-link class="social-link-facebook" external icon-f7="logo_facebook" href="https://facebook.com/geofizika2016"/>
+              </f7-col>
+              <f7-col class="social-col">
+                <f7-link class="social-link-youtube" external href="https://youtube.com/channel/UCBQqB1K9yT3hnHnS7aqs9ag#menu">
+                  <font-awesome-icon :icon="['fab', 'youtube']" size="2x"/>
+                </f7-link>
+              </f7-col>
+            </f7-row>
+          </f7-block>
         </template>
     </f7-page>
 </template>
@@ -71,6 +87,7 @@
         data() {
             return {
                 id: this.$f7route.params.id,
+                baseurl: process.env.VUE_APP_BASEURL,
                 isDataLoading: false,
                 article: {},
                 isLiked: false,
@@ -173,5 +190,23 @@
     }
     .article-highlight {
         background-color: #e7e7e7;
+    }
+    .social-col {
+      text-align: center;
+    }
+    .social-link-instagram {
+      background: #f09433;
+      background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .social-link-facebook {
+      color: #4867aa;
+    }
+    .social-link-youtube {
+      color: #ff011d;
     }
 </style>
