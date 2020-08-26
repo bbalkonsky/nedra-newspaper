@@ -25,8 +25,9 @@
 </template>
 
 <script>
-import repository from "@/api/repository";
 import {f7Page, f7Navbar, f7NavTitle, f7Block, f7Col, f7Preloader, f7List, f7ListItem} from 'framework7-vue';
+import {RepositoryFactory} from "@/api/RepositoryFactory";
+const TagRepository = RepositoryFactory.get('tag');
 
 export default {
   name: 'TagListPage',
@@ -42,7 +43,7 @@ export default {
   methods: {
     async fetch() {
       try {
-        const data = await repository.getTags();
+        const data = await TagRepository.get();
         this.tags = data.data;
       } catch(err) {
         console.log(err)
