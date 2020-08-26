@@ -1,4 +1,5 @@
 # nedra-newspaper
+Progressive web application (PWA) for the web version of the Gazprom Nedra newspaper
 
 ## Project setup
 ```
